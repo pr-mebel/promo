@@ -1,4 +1,10 @@
-import { ExamplesSection, Header, Hero, QuizSection } from "../sections";
+import {
+  Advantages,
+  ExamplesSection,
+  Header,
+  Hero,
+  QuizSection,
+} from "../sections";
 
 export default function Home() {
   return (
@@ -7,6 +13,7 @@ export default function Home() {
       <Hero />
       <QuizSection />
       <ExamplesSection />
+      <Advantages />
     </>
   );
 }
