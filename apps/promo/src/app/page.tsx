@@ -4,6 +4,7 @@ import {
   Header,
   Hero,
   QuizSection,
+  Consultation,
 } from "../sections";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       <QuizSection />
       <ExamplesSection />
       <Advantages />
+      <Consultation />
     </>
   );
 }
