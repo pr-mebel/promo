@@ -1,4 +1,4 @@
-import { Header, Hero, QuizSection } from "../sections";
+import { ExamplesSection, Header, Hero, QuizSection } from "../sections";
 
 export default function Home() {
   return (
@@ -6,6 +6,7 @@ export default function Home() {
       <Header />
       <Hero />
       <QuizSection />
+      <ExamplesSection />
     </>
   );
 }

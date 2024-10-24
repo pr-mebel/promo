@@ -44,7 +44,7 @@ export const Hero = () => (
         </p>
         <div className="mt-6 flex justify-between">
           <button className="w-full bg-accent px-12 py-3 font-medium text-white md:w-auto">
-            Узнать стоимость изготовления мебели для вашего дома
+            Узнать стоимость
           </button>
           <div className="hidden items-end gap-6 md:flex">
             <Component1>Обустраиваем 100+ интерьеров в&nbsp;год</Component1>
