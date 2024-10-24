@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const Header = () => {
   return (
-    <header className="fixed z-50 w-full bg-dark-100 text-dark-900 md:px-10 md:py-8">
+    <header className="z-50 w-full bg-dark-100 text-dark-900 md:px-10 md:py-8">
       {/* mobile header content */}
       <div className="container mx-auto flex h-16 justify-between md:hidden">
         <div className="relative h-16 w-[100px]">

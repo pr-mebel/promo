@@ -5,12 +5,12 @@ import { getCards } from "./cards";
 export const ExamplesSection = async () => {
   const cards = await getCards();
   return (
-    <section className="py-10 max-md:container">
-      <h3 className="uppercase text-dark-700">Портфолио</h3>
-      <h2 className="mb-4 text-3xl font-medium">
+    <section className="items-center bg-white py-20 max-md:container md:flex md:flex-col">
+      <h3 className="uppercase text-dark-700 md:mb-3">Портфолио</h3>
+      <h2 className="mb-4 text-3xl font-medium md:mb-6">
         Посмотрите на примеры выполненных нами работ
       </h2>
-      <div className="mb-8 flex flex-col gap-6 md:grid md:grid-cols-12 md:gap-0">
+      <div className="mb-8 flex max-w-7xl flex-col gap-6 md:grid md:grid-cols-12 md:gap-0">
         {cards.map((card, index) => (
           <Card key={index} {...card} />
         ))}

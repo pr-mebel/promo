@@ -6,7 +6,7 @@ export type CardProps = {
 };
 
 export const Card = ({ title, description, icon, number }: CardProps) => (
-  <div className="min-w-[350px] bg-white px-5 pb-5 pt-4">
+  <div className="bg-white px-5 pb-5 pt-4 max-md:min-w-[350px] md:col-span-4">
     <div className="mb-5 flex items-start justify-between">
       <div className="h-10 w-10">{icon}</div>
       <div className="text-2xl text-dark-300">{number}</div>
