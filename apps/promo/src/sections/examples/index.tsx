@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "./card";
-import { cards } from "./cards";
+import { getCards } from "./cards";
 
-export const ExamplesSection = () => {
+export const ExamplesSection = async () => {
+  const cards = await getCards();
   return (
     <section className="container pb-10">
       <h3 className="uppercase text-dark-700">Портфолио</h3>
