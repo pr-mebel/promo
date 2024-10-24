@@ -5,13 +5,23 @@ import "./globals.css";
 const fonts = localFont({
   src: [
     {
-      path: "./fonts/Gilroy-Light.otf",
+      path: "./fonts/Gilroy-Light.woff",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Gilroy-Regular.woff",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./fonts/Gilroy-ExtraBold.otf",
-      weight: "700",
+      path: "./fonts/Gilroy-Medium.woff",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Gilroy-SemiBold.woff",
+      weight: "600",
       style: "normal",
     },
   ],
