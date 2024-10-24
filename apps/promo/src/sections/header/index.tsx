@@ -1,13 +1,16 @@
 import Image from "next/image";
 import { ArrowRight, Phone1, PinPoint } from "../../icons";
+import Link from "next/link";
 
 export const Header = () => {
   return (
-    <header className="bg-dark-100 text-dark-900 md:px-10 md:py-8">
+    <header className="fixed z-50 w-full bg-dark-100 text-dark-900 md:px-10 md:py-8">
       {/* mobile header content */}
       <div className="container mx-auto flex h-16 justify-between md:hidden">
         <div className="relative h-16 w-[100px]">
-          <Image src="/logo.svg" fill priority alt="logo" />
+          <Link href="/" className="cursor-pointer">
+            <Image src="/logo.svg" fill priority alt="logo" />
+          </Link>
         </div>
         <div className="flex items-center gap-3">
           <p className="text-xl font-medium">
@@ -26,7 +29,9 @@ export const Header = () => {
       <div className="container mx-auto hidden h-16 justify-between md:flex">
         <div className="flex gap-4">
           <div className="relative h-16 w-[100px] md:w-[220px]">
-            <Image src="/logo.svg" fill priority alt="logo" />
+            <Link href="/" className="cursor-pointer">
+              <Image src="/logo.svg" fill priority alt="logo" />
+            </Link>
           </div>
           <div className="w-[1px] bg-[#E7E7E7]" />
           <p>
