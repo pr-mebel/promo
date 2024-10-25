@@ -13,6 +13,6 @@ export const Card = ({ title, description, icon, number }: CardProps) => (
     </div>
     <h4 className="mb-4 text-xl">{title}</h4>
     <hr className="mb-6 w-full bg-dark-300" />
-    <p className="text-sm">{description}</p>
+    <p>{description}</p>
   </div>
 );

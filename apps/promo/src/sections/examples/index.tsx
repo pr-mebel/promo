@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "./card";
 import { getCards } from "./cards";
+import { Section } from "@/components/section";
+import { DialogForm } from "../dialog-form";
 
 export const ExamplesSection = async () => {
   const cards = await getCards();
   return (
-    <section className="items-center bg-white py-20 max-md:container md:flex md:flex-col">
+    <Section className="items-center bg-white max-md:container md:flex md:flex-col">
       <h3 className="uppercase text-dark-700 md:mb-3">Портфолио</h3>
       <h2 className="mb-4 text-3xl font-medium md:mb-6">
         Посмотрите на примеры выполненных нами работ
@@ -16,10 +18,12 @@ export const ExamplesSection = async () => {
         ))}
       </div>
       <div className="md:flex md:justify-center">
-        <Button className="max-md:w-full" variant="accent">
-          Узнать стоимость
-        </Button>
+        <DialogForm>
+          <Button className="max-md:w-full" variant="accent">
+            Узнать стоимость
+          </Button>
+        </DialogForm>
       </div>
-    </section>
+    </Section>
   );
 };

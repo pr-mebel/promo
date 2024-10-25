@@ -1,21 +1,22 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { DialogForm } from "../dialog-form";
 
 const Component1 = ({ children }: { children: React.ReactNode }) => (
-  <p className="relative before:absolute before:-left-3 before:h-full before:w-[1px] before:bg-dark-600">
+  <p className="relative max-w-[160px] before:absolute before:-left-3 before:h-full before:w-[1px] before:bg-dark-600 xl:max-w-[180px]">
     {children}
   </p>
 );
 
 export const Hero = () => (
-  <section className="relative h-[100vh] w-full bg-gradient-to-t from-[#000000e5] via-[#000000c7] via-30% pb-14 md:h-[70vh]">
+  <section className="relative h-[90vh] w-full bg-gradient-to-t from-[#000000e5] via-[#000000c7] via-30% pb-14 lg:h-[70vh]">
     <Image
       src="/hero-mobile.png"
       priority
       fill
       alt="hero"
       style={{ objectFit: "cover", zIndex: -1 }}
-      className="md:hidden"
+      className="lg:hidden"
     />
     <Image
       src="/hero.png"
@@ -23,14 +24,14 @@ export const Hero = () => (
       fill
       alt="hero"
       style={{ objectFit: "cover", zIndex: -1 }}
-      className="hidden md:block"
+      className="hidden lg:block"
     />
     <div className="container mx-auto flex h-full flex-col justify-end text-white">
       <div className="">
-        <h1 className="text-4xl font-medium uppercase md:text-5xl">
+        <h1 className="text-4xl font-medium uppercase lg:text-5xl">
           Изготовим на&nbsp;заказ мебель премиум класса
         </h1>
-        <p className="mt-2 text-xl font-light md:text-2xl">
+        <p className="mt-2 text-xl font-light lg:text-2xl">
           которой&nbsp;Вы будете восхищаться, а&nbsp;Ваши друзья завидовать
         </p>
         <div className="mb-8 mt-3 h-[1px] w-full bg-gradient-to-l from-[#20202000] via-[#6A6A6ABA] via-[73%] to-dark-600" />
@@ -42,10 +43,12 @@ export const Hero = () => (
           и&nbsp;точную стоимость вашей мебели в&nbsp;течение 24&nbsp;часов
         </p>
         <div className="mt-6 flex justify-between">
-          <Button variant="accent" className="w-full md:w-auto">
-            Узнать стоимость
-          </Button>
-          <div className="hidden items-end gap-6 md:flex">
+          <DialogForm>
+            <Button variant="accent" className="w-full lg:w-auto">
+              Узнать стоимость
+            </Button>
+          </DialogForm>
+          <div className="hidden items-end gap-6 lg:flex">
             <Component1>Обустраиваем 100+ интерьеров в&nbsp;год</Component1>
             <Component1>Дизайнеры с&nbsp;опытом более 10&nbsp;лет</Component1>
             <Component1>Проекты любой сложности</Component1>

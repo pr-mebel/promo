@@ -4,60 +4,60 @@ export type ImageOptionProps = {
 };
 
 export type TextOptionProps = {
-  title: string;
+  title: React.ReactNode;
 };
 
 const furnitureOptions: Record<string, ImageOptionProps> = {
   kitchen: {
     title: "Кухня",
-    image: "https://via.placeholder.com/330",
+    image: "/quiz/furniture/1.jpg",
   },
   "main-room": {
     title: "Гостиная",
-    image: "https://via.placeholder.com/330",
+    image: "/quiz/furniture/2.jpg",
   },
   bedroom: {
     title: "Шкафы",
-    image: "https://via.placeholder.com/330",
+    image: "/quiz/furniture/3.jpg",
   },
   wardrobe: {
     title: "Гардеробная",
-    image: "https://via.placeholder.com/330",
+    image: "/quiz/furniture/4.jpg",
   },
   bathroom: {
     title: "Ванная",
-    image: "https://via.placeholder.com/330",
+    image: "/quiz/furniture/5.jpg",
   },
   custom: {
     title: "Нужно укомплектовать под ключ",
-    image: "https://via.placeholder.com/330",
+    image: "/quiz/furniture/6.jpg",
   },
 };
 
 const styleOptions: Record<string, ImageOptionProps> = {
   modern: {
     title: "Современный",
-    image: "https://via.placeholder.com/330",
+    image: "/quiz/style/modern.jpg",
   },
   classic: {
     title: "Классический",
-    image: "https://via.placeholder.com/330",
+    image: "/quiz/style/classic.jpg",
   },
   neoclassic: {
     title: "Неоклассика",
-    image: "https://via.placeholder.com/330",
+    image: "/quiz/style/neoclassic.jpg",
   },
   loft: {
     title: "Лофт",
-    image: "https://via.placeholder.com/330",
+    image: "/quiz/style/loft.jpg",
   },
   other: {
     title: "Другой",
-    image: "https://via.placeholder.com/330",
+    image: "/quiz/style/other.webp",
   },
   "consultation-needed": {
     title: "Нужна консультация",
-    image: "https://via.placeholder.com/330",
+    image: "/quiz/style/other.webp",
   },
 };
 
@@ -69,7 +69,7 @@ const designProjectOptions: Record<string, TextOptionProps> = {
     title: "Есть фото/визуализации понравившейся мебели",
   },
   "in-progress": {
-    title: "Проект в стадии разработки",
+    title: <>Проект в&nbsp;стадии разработки</>,
   },
   "no-design-project": {
     title: "Ничего нет, нужен дизайн-проект",
@@ -102,7 +102,7 @@ const materialsOptions: Record<string, TextOptionProps> = {
 
 const stageOptions: Record<string, TextOptionProps> = {
   "not-started": {
-    title: "Еще не начали",
+    title: <>Еще не&nbsp;начали</>,
   },
   "rough-finish": {
     title: "Черновая отделка",
@@ -139,7 +139,7 @@ export type StepData = {
     desktop: number;
     mobile: number;
   };
-  question: string;
+  question: React.ReactNode;
   options: string[];
 } & (
   | {
@@ -193,7 +193,7 @@ export const steps: StepData[] = [
   },
   {
     id: "designProject",
-    question: "Есть ли у вас дизайн-проект интерьера или мебели?",
+    question: <>Есть&nbsp;ли у&nbsp;вас дизайн-проект интерьера или мебели?</>,
     kind: "text-options",
     options: [
       "has-design-project",
@@ -209,7 +209,7 @@ export const steps: StepData[] = [
   },
   {
     id: "materials",
-    question: "Какие материалы в мебели для Вас предпочтительны?",
+    question: <>Какие материалы в&nbsp;мебели для Вас предпочтительны?</>,
     multiple: true,
     kind: "text-options",
     options: ["ldsp", "shpon", "enamel", "latun", "metal", "glass", "idk"],
@@ -221,7 +221,7 @@ export const steps: StepData[] = [
   },
   {
     id: "stage",
-    question: "На какой стадии ремонта находится помещение?",
+    question: <>На&nbsp;какой стадии ремонта находится помещение?</>,
     kind: "text-options",
     options: [
       "not-started",
@@ -238,7 +238,11 @@ export const steps: StepData[] = [
   },
   {
     id: "timing",
-    question: "Как скоро Вы хотели бы, чтобы ваш дом был обставлен мебелью?",
+    question: (
+      <>
+        Как скоро&nbsp;Вы хотели&nbsp;бы, чтобы ваш дом был обставлен мебелью?
+      </>
+    ),
     kind: "text-options",
     options: ["asap", "3-months", "6-months", "idk"],
     store: timingOptions,

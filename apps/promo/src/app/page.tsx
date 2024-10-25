@@ -5,9 +5,11 @@ import {
   Hero,
   QuizSection,
   Consultation,
+  ContactsSection,
+  Footer,
 } from "../sections";
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <Header />
@@ -16,6 +18,8 @@ export default function Home() {
       <ExamplesSection />
       <Advantages />
       <Consultation />
+      <ContactsSection />
+      <Footer />
     </>
   );
 }
