@@ -107,44 +107,46 @@ const List = ({ className }: React.ComponentProps<"ul">) => (
 );
 
 export const Consultation = () => (
-  <Section className="bg-dark-100">
-    <Subtitle className="md:hidden" />
-    <Title className="md:hidden" />
-    {/* mobile */}
-    <Card className="w-full md:hidden">
-      <div className="relative aspect-video w-full">
-        <Image
-          src="/consultation-mobile.png"
-          alt="consultation"
-          fill
-          className="object-cover"
-        />
-      </div>
-      <h4 className="mb-3 mt-6 text-xl font-medium">
-        На консультации Вы узнаете:
-      </h4>
-      <List />
-      <Form className="mt-6" />
-    </Card>
-    {/* desktop */}
-    <Card className="hidden w-full grid-cols-12 gap-10 md:grid">
-      <div className="col-span-7">
-        <Subtitle />
-        <Title />
-        <h4 className="mb-6 mt-6 text-xl font-medium">
+  <div className="w-full bg-dark-100">
+    <Section className="bg-dark-100">
+      <Subtitle className="md:hidden" />
+      <Title className="md:hidden" />
+      {/* mobile */}
+      <Card className="w-full md:hidden">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/consultation-mobile.png"
+            alt="consultation"
+            fill
+            className="object-cover"
+          />
+        </div>
+        <h4 className="mb-3 mt-6 text-xl font-medium">
           На консультации Вы узнаете:
         </h4>
         <List />
         <Form className="mt-6" />
-      </div>
-      <div className="relative col-span-5 h-full">
-        <Image
-          src="/consultation.jpg"
-          alt="consultation"
-          fill
-          className="object-cover"
-        />
-      </div>
-    </Card>
-  </Section>
+      </Card>
+      {/* desktop */}
+      <Card className="hidden w-full grid-cols-12 gap-10 md:grid">
+        <div className="col-span-7">
+          <Subtitle />
+          <Title />
+          <h4 className="mb-6 mt-6 text-xl font-medium">
+            На консультации Вы узнаете:
+          </h4>
+          <List />
+          <Form className="mt-6" />
+        </div>
+        <div className="relative col-span-5 h-full">
+          <Image
+            src="/consultation.jpg"
+            alt="consultation"
+            fill
+            className="object-cover"
+          />
+        </div>
+      </Card>
+    </Section>
+  </div>
 );

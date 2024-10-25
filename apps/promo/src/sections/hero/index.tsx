@@ -9,24 +9,27 @@ const Component1 = ({ children }: { children: React.ReactNode }) => (
 );
 
 export const Hero = () => (
-  <section className="relative h-[90vh] w-full bg-gradient-to-t from-[#000000e5] via-[#000000c7] via-30% pb-14 lg:h-[70vh]">
-    <Image
-      src="/hero-mobile.png"
-      priority
-      fill
-      alt="hero"
-      style={{ objectFit: "cover", zIndex: -1 }}
-      className="lg:hidden"
-    />
-    <Image
-      src="/hero.png"
-      priority
-      fill
-      alt="hero"
-      style={{ objectFit: "cover", zIndex: -1 }}
-      className="hidden lg:block"
-    />
-    <div className="container mx-auto flex h-full flex-col justify-end text-white">
+  <section className="relative z-10 h-[90vh] w-full pb-14 lg:h-[70vh]">
+    <div className="absolute inset-0 z-10 h-full w-full bg-gradient-to-t from-[#000000e5] via-[#000000c7] via-30%" />
+    <div className="absolute h-full w-full">
+      <Image
+        src="/hero-mobile.png"
+        priority
+        fill
+        alt="hero"
+        style={{ objectFit: "cover" }}
+        className="lg:hidden"
+      />
+      <Image
+        src="/hero.png"
+        priority
+        fill
+        alt="hero"
+        style={{ objectFit: "cover" }}
+        className="hidden lg:block"
+      />
+    </div>
+    <div className="container relative z-10 mx-auto flex h-full flex-col justify-end text-white">
       <div className="">
         <h1 className="text-4xl font-medium uppercase lg:text-5xl">
           Изготовим на&nbsp;заказ мебель премиум класса

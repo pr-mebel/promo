@@ -105,16 +105,18 @@ const Quiz = () => {
 };
 
 export const QuizSection = () => (
-  <Section className="bg-dark-100">
-    <h2 className="text-3xl font-medium lg:text-4xl">
-      Получите индивидуальное предложение по изготовлению корпусной мебели для
-      вашего дома
-    </h2>
-    <h3 className="mb-10 mt-2 text-xl text-dark-700 lg:text-2xl">
-      Ответьте на 6 вопросов и{" "}
-      <span className="font-bold">рассчитайте стоимость изготовления</span>{" "}
-      мебели
-    </h3>
-    <Quiz />
-  </Section>
+  <div className="w-full bg-dark-100">
+    <Section>
+      <h2 className="text-3xl font-medium lg:text-4xl">
+        Получите индивидуальное предложение по изготовлению корпусной мебели для
+        вашего дома
+      </h2>
+      <h3 className="mb-10 mt-2 text-xl text-dark-700 lg:text-2xl">
+        Ответьте на 6 вопросов и{" "}
+        <span className="font-bold">рассчитайте стоимость изготовления</span>{" "}
+        мебели
+      </h3>
+      <Quiz />
+    </Section>
+  </div>
 );
