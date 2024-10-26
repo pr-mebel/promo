@@ -12,6 +12,7 @@ import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/card";
 import { submitForm } from "@/server";
 import { useState } from "react";
+import { Goal, useMetrika } from "@/hooks/use-metrika";
 
 const StepContainer = ({
   children,
@@ -46,12 +47,22 @@ export const WhiteCard = ({
 
 const Quiz = () => {
   const [step, setStep] = useState(0);
+  const [visited, setVisited] = useState<number[]>([]);
+  const m = useMetrika();
+
+  const handleAnalytics = (step: number) => {
+    if (!visited.includes(step)) {
+      m.track(("promo/quiz/step/" + step + 1) as Goal);
+      setVisited([...visited, step]);
+    }
+  };
 
   const handleNext = () => {
     if (step === steps.length) {
       return;
     }
     setStep(step + 1);
+    handleAnalytics(step);
   };
 
   const handleBack = () => {
@@ -111,24 +122,33 @@ const Quiz = () => {
   );
 };
 
-export const QuizSection = () => (
-  <div className="w-full bg-dark-100">
-    <Section>
-      <h2 className="text-3xl font-medium lg:text-4xl">
-        Получите индивидуальное предложение по изготовлению корпусной мебели для
-        вашего дома
-      </h2>
-      <h3 className="mb-10 mt-2 text-xl text-dark-700 lg:text-2xl">
-        Ответьте на 6 вопросов и{" "}
-        <span className="font-bold">рассчитайте стоимость изготовления</span>{" "}
-        мебели
-      </h3>
-      <form
-        action={submitForm}
-        className="relative h-[700px] md:h-[1000px] lg:h-[700px]"
-      >
-        <Quiz />
-      </form>
-    </Section>
-  </div>
-);
+export const QuizSection = () => {
+  const m = useMetrika();
+
+  const handleSubmit = () => {
+    m.track("promo/quiz/submit");
+  };
+
+  return (
+    <div className="w-full bg-dark-100">
+      <Section>
+        <h2 className="text-3xl font-medium lg:text-4xl">
+          Получите индивидуальное предложение по изготовлению корпусной мебели
+          для вашего дома
+        </h2>
+        <h3 className="mb-10 mt-2 text-xl text-dark-700 lg:text-2xl">
+          Ответьте на 6 вопросов и{" "}
+          <span className="font-bold">рассчитайте стоимость изготовления</span>{" "}
+          мебели
+        </h3>
+        <form
+          action={submitForm}
+          onSubmit={handleSubmit}
+          className="relative h-[700px] md:h-[1000px] lg:h-[700px]"
+        >
+          <Quiz />
+        </form>
+      </Section>
+    </div>
+  );
+};

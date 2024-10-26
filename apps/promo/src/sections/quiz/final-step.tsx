@@ -43,17 +43,12 @@ export const FinalStep = ({
         корпусной мебели
       </p>
       <div className="space-y-3">
-        <Input
-          name="name"
-          type="name"
-          placeholder="Ваше имя"
-          className="mb-3"
-        />
+        <Input name="name" type="name" placeholder="Ваше имя" required />
         <Input
           name="phone"
           type="tel"
           placeholder="Ваш номер телефона"
-          className="mb-3"
+          required
         />
         <Button type="submit" variant="accent" className="w-full">
           Получить консультацию

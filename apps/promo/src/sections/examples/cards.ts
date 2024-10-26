@@ -1,3 +1,4 @@
+import { Goal } from "@/hooks/use-metrika";
 import fs from "fs/promises";
 
 const getImagePaths = async (id: string) => {
@@ -12,6 +13,7 @@ const getImagePaths = async (id: string) => {
 
 export const getCards = async (): Promise<
   {
+    goal: Goal;
     title: string;
     main: string;
     images: string[];
@@ -29,26 +31,32 @@ export const getCards = async (): Promise<
   return [
     {
       title: "ЖК Садовые кварталы",
+      goal: "promo/projects/1",
       ...res[0],
     },
     {
       title: "ЖК Серебряный бор",
+      goal: "promo/projects/2",
       ...res[1],
     },
     {
       title: "ЖК Хорошевский",
+      goal: "promo/projects/3",
       ...res[2],
     },
     {
       title: "Частный интерьер",
+      goal: "promo/projects/4",
       ...res[3],
     },
     {
       title: "ЖК Пресня Сити",
+      goal: "promo/projects/5",
       ...res[4],
     },
     {
       title: "ЖК Сердце Столицы",
+      goal: "promo/projects/6",
       ...res[5],
     },
   ];
