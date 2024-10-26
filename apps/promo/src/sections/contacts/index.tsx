@@ -13,8 +13,8 @@ const ListItem = ({
   className,
 }: ListItemProps & React.ComponentProps<"li">) => (
   <li className={cn("flex items-center", className)}>
-    <div className="h-6 w-6">{icon}</div>
-    <span className="ml-2">{children}</span>
+    <div className="h-6 w-6 shrink-0">{icon}</div>
+    <span className="ml-3">{children}</span>
   </li>
 );
 
