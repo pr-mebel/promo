@@ -21,7 +21,7 @@ export const Hero = () => (
         className="lg:hidden"
       />
       <Image
-        src="/hero.png"
+        src="/hero.jpg"
         priority
         fill
         alt="hero"
