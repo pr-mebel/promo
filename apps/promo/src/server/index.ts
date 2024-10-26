@@ -18,7 +18,7 @@ const getOptionLabel = (
   option: FormDataEntryValue | null,
 ): string => {
   if (!option) {
-    return "unknown-option (must be a bug)";
+    return "";
   }
 
   const optionData = store[option.toString()];
@@ -76,6 +76,12 @@ export const submitForm = async (formData: FormData) => {
   }
 
   const ph = PostHogClient();
+  await ph.identify({
+    distinctId: pii.phone,
+    properties: {
+      ...pii,
+    },
+  });
   await ph.capture({
     distinctId: pii.phone,
     event: "form-submitted",
@@ -84,7 +90,6 @@ export const submitForm = async (formData: FormData) => {
       ...quizData,
     },
   });
-  await ph.flush();
   await ph.shutdown();
 
   return redirect("/thanks");
