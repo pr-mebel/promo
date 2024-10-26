@@ -16,7 +16,7 @@ const ListItem = ({ children, icon }: ListItemProps) => (
 export const ContactsSection = () => {
   return (
     <Section className="bg-white" id="contacts">
-      <div className="container grid gap-8 lg:grid-cols-12">
+      <div className="grid gap-8 lg:grid-cols-12">
         <div className="col-span-12 lg:col-span-5">
           <h3 className="mb-4 text-xl uppercase lg:mb-3">Контакты</h3>
           <h2 className="mb-4 text-4xl font-medium">

@@ -3,7 +3,6 @@
 import * as React from "react";
 
 import { useMediaQuery } from "@/hooks/use-media-query";
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -14,16 +13,14 @@ import {
 } from "@/components/ui/dialog";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Form } from "../form";
 
 type DialogFormProps = {
   children: React.ReactNode;
@@ -43,6 +40,7 @@ export function DialogForm({ children }: DialogFormProps) {
               src="/quiz/style/modern.jpg"
               alt="img"
               fill
+              priority
               className="object-cover"
             />
           </div>
@@ -76,18 +74,3 @@ export function DialogForm({ children }: DialogFormProps) {
     </Drawer>
   );
 }
-
-const Form = ({ className }: React.ComponentProps<"form">) => (
-  <form className={cn(className)}>
-    <Input name="name" type="name" placeholder="Ваше имя" className="mb-3" />
-    <Input
-      name="phone"
-      type="tel"
-      placeholder="Ваш номер телефона"
-      className="mb-4"
-    />
-    <Button type="submit" variant="accent" className="w-full">
-      Получить консультацию
-    </Button>
-  </form>
-);

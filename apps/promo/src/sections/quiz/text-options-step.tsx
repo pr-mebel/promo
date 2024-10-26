@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils";
 import { TextOptionProps } from "./constants";
 import { Check2 } from "@/icons";
+import { useState } from "react";
 
 type TextOptionsStepProps = {
   name: string;
-  value: string[];
   multiple?: boolean;
   options: string[];
   store: Record<string, TextOptionProps>;
@@ -12,18 +12,29 @@ type TextOptionsStepProps = {
     desktop: number;
     mobile: number;
   };
-  onChange: (value: string[]) => void;
 };
 
 export const QuizStepTextOptions = ({
   name,
-  value,
   options,
   multiple,
   store,
   cols,
-  onChange,
 }: TextOptionsStepProps) => {
+  const [value, onChange] = useState<string[]>([]);
+  const handleOnChange = (option: string) => {
+    if (multiple) {
+      if (value.includes(option)) {
+        onChange(value.filter((v) => v !== option));
+      } else {
+        onChange([...value, option]);
+      }
+      return;
+    }
+
+    onChange([option]);
+  };
+
   return (
     <div className="grid grid-cols-12 gap-4">
       {options.map((option) => (
@@ -44,19 +55,9 @@ export const QuizStepTextOptions = ({
             type={multiple ? "checkbox" : "radio"}
             checked={value.includes(option)}
             name={name}
+            value={option}
             className="hidden"
-            onChange={(e) => {
-              if (multiple) {
-                if (e.target.checked) {
-                  onChange([...value, option]);
-                } else {
-                  onChange(value.filter((v) => v !== option));
-                }
-                return;
-              }
-
-              onChange([option]);
-            }}
+            onChange={() => handleOnChange(option)}
           />
           {multiple ? (
             <div

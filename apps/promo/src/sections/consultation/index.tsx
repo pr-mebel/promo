@@ -1,9 +1,8 @@
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Form } from "../form";
 
 const ListItem = (props: { children: React.ReactNode }) => (
   <li className="flex items-center gap-3">{props.children}</li>
@@ -21,26 +20,6 @@ const ListItemIcon = (props: { children: React.ReactNode }) => (
 
 const ListItemText = (props: { children: React.ReactNode }) => (
   <p className="font-light lg:text-xl">{props.children}</p>
-);
-
-const Form = ({ className }: React.ComponentProps<"form">) => (
-  <form className={cn("space-y-3 md:flex md:flex-col", className)}>
-    <Input
-      placeholder="Введите Ваше имя"
-      type="name"
-      name="name"
-      className="w-full md:w-80"
-    />
-    <Input
-      placeholder="Введите номер телефона"
-      type="tel"
-      name="phone"
-      className="w-full md:w-80"
-    />
-    <Button type="submit" className="w-full md:w-fit" variant="accent">
-      Получить консультацию
-    </Button>
-  </form>
 );
 
 const Title = ({ className }: React.ComponentProps<"h2">) => (
@@ -136,7 +115,7 @@ export const Consultation = () => (
             На консультации Вы узнаете:
           </h4>
           <List />
-          <Form className="mt-6" />
+          <Form className="mt-6 max-w-80" />
         </div>
         <div className="relative col-span-5 h-full">
           <Image

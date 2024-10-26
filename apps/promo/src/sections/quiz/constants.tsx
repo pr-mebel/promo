@@ -7,7 +7,7 @@ export type TextOptionProps = {
   title: React.ReactNode;
 };
 
-const furnitureOptions: Record<string, ImageOptionProps> = {
+export const furnitureOptions: Record<string, ImageOptionProps> = {
   kitchen: {
     title: "Кухня",
     image: "/quiz/furniture/1.jpg",
@@ -34,7 +34,7 @@ const furnitureOptions: Record<string, ImageOptionProps> = {
   },
 };
 
-const styleOptions: Record<string, ImageOptionProps> = {
+export const styleOptions: Record<string, ImageOptionProps> = {
   modern: {
     title: "Современный",
     image: "/quiz/style/modern.jpg",
@@ -61,7 +61,7 @@ const styleOptions: Record<string, ImageOptionProps> = {
   },
 };
 
-const designProjectOptions: Record<string, TextOptionProps> = {
+export const designProjectOptions: Record<string, TextOptionProps> = {
   "has-design-project": {
     title: "Есть дизайн проект интерьера",
   },
@@ -76,7 +76,7 @@ const designProjectOptions: Record<string, TextOptionProps> = {
   },
 };
 
-const materialsOptions: Record<string, TextOptionProps> = {
+export const materialsOptions: Record<string, TextOptionProps> = {
   ldsp: {
     title: "ЛДСП",
   },
@@ -100,7 +100,7 @@ const materialsOptions: Record<string, TextOptionProps> = {
   },
 };
 
-const stageOptions: Record<string, TextOptionProps> = {
+export const stageOptions: Record<string, TextOptionProps> = {
   "not-started": {
     title: <>Еще не&nbsp;начали</>,
   },
@@ -118,7 +118,7 @@ const stageOptions: Record<string, TextOptionProps> = {
   },
 };
 
-const timingOptions: Record<string, TextOptionProps> = {
+export const timingOptions: Record<string, TextOptionProps> = {
   asap: {
     title: "Как можно быстрее",
   },

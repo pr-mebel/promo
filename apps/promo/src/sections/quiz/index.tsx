@@ -6,11 +6,12 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { QuizStep } from "./step";
-import { useForm } from "./use-form";
 import { DesignerMessage } from "./designer-message";
 import { FinalStep } from "./final-step";
 import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/card";
+import { submitForm } from "@/server";
+import { useState } from "react";
 
 const StepContainer = ({
   children,
@@ -29,8 +30,22 @@ const StepContainer = ({
   </div>
 );
 
+export const WhiteCard = ({
+  children,
+  className,
+}: React.ComponentProps<"div">) => (
+  <div
+    className={cn(
+      "absolute inset-0 z-0 grid grid-cols-12 bg-white opacity-0",
+      className,
+    )}
+  >
+    {children}
+  </div>
+);
+
 const Quiz = () => {
-  const { step, setStep, formState, setFormState } = useForm();
+  const [step, setStep] = useState(0);
 
   const handleNext = () => {
     if (step === steps.length) {
@@ -46,61 +61,53 @@ const Quiz = () => {
     setStep(step - 1);
   };
 
-  if (step === 6) {
-    return <FinalStep />;
-  }
-
   return (
-    <div className="grid h-[700px] grid-cols-12 md:h-[1000px] lg:h-[700px]">
-      <DesignerMessage className="hidden xl:block" />
-      <main className="relative col-span-12 bg-white xl:col-span-9">
-        <Progress value={((step + 1) / 7) * 100} className="hidden lg:block" />
-        <Card className="h-full">
-          <form className="relative flex h-full flex-col justify-end">
-            {steps.map((s, i) => (
-              <StepContainer key={s.id} active={step === i}>
-                <QuizStep
-                  {...s}
-                  index={i}
-                  // @ts-ignore
-                  value={formState[s.id]}
-                  onChange={(value) => {
-                    setFormState((state) => ({
-                      ...state,
-                      [s.id]: value,
-                    }));
-                  }}
-                />
-              </StepContainer>
-            ))}
-            <div className="relative z-20 flex flex-col gap-5">
-              <div>
-                <p className="mb-1 text-dark-700 lg:hidden">
-                  Вопрос {step + 1}/6
-                </p>
-                <Progress
-                  value={((step + 1) / 7) * 100}
-                  className="lg:hidden"
-                />
-              </div>
-              <div className="flex flex-grow justify-end gap-2">
-                <Button type="button" className="w-full" onClick={handleBack}>
-                  Назад
-                </Button>
-                <Button
-                  type="button"
-                  variant="accent"
-                  className="w-full"
-                  onClick={handleNext}
-                >
-                  Далее <ArrowRight className="inline w-5" />
-                </Button>
+    <>
+      <input type="hidden" name="isQuiz" value="true" />
+      <FinalStep className={cn(step === 6 && "z-10 opacity-100")} />
+      <WhiteCard className={cn(step !== 6 && "z-10 opacity-100")}>
+        <DesignerMessage className="hidden xl:block" />
+        <main className="relative col-span-12 xl:col-span-9">
+          <Progress
+            value={((step + 1) / 7) * 100}
+            className="hidden lg:block"
+          />
+          <Card className="h-full">
+            <div className="relative flex h-full flex-col justify-end">
+              {steps.map((stepData, i) => (
+                <StepContainer key={stepData.id} active={step === i}>
+                  <QuizStep {...stepData} />
+                </StepContainer>
+              ))}
+              <div className="relative z-20 flex flex-col gap-5">
+                <div>
+                  <p className="mb-1 text-dark-700 lg:hidden">
+                    Вопрос {step + 1}/6
+                  </p>
+                  <Progress
+                    value={((step + 1) / 7) * 100}
+                    className="lg:hidden"
+                  />
+                </div>
+                <div className="flex flex-grow justify-end gap-2">
+                  <Button type="button" className="w-full" onClick={handleBack}>
+                    Назад
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="accent"
+                    className="w-full"
+                    onClick={handleNext}
+                  >
+                    Далее <ArrowRight className="inline w-5" />
+                  </Button>
+                </div>
               </div>
             </div>
-          </form>
-        </Card>
-      </main>
-    </div>
+          </Card>
+        </main>
+      </WhiteCard>
+    </>
   );
 };
 
@@ -116,7 +123,12 @@ export const QuizSection = () => (
         <span className="font-bold">рассчитайте стоимость изготовления</span>{" "}
         мебели
       </h3>
-      <Quiz />
+      <form
+        action={submitForm}
+        className="relative h-[700px] md:h-[1000px] lg:h-[700px]"
+      >
+        <Quiz />
+      </form>
     </Section>
   </div>
 );
