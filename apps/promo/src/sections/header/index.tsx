@@ -108,11 +108,15 @@ export const Header = () => {
               </svg>
 
               <div>
-                <p className="underline">
+                <a
+                  href="https://yandex.ru/maps/-/CCQtFQdaLA"
+                  className="cursor-pointer underline"
+                  target="_blank"
+                >
                   Наш салон: г. Москва, м. Сокол,
                   <br />
                   ул. Балтийская, д. 9
-                </p>
+                </a>
                 <p>Время работы: 10:00 - 20:00</p>
               </div>
             </div>
