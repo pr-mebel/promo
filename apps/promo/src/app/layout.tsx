@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import dynamic from "next/dynamic";
+import { PHProvider } from "@/posthog/provider";
 
 const fonts = localFont({
   src: [
@@ -39,7 +41,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={`${fonts.className} text-dark-900`}>{children}</body>
+      <PHProvider>
+        <body className={`${fonts.className} text-dark-900`}>{children}</body>
+      </PHProvider>
     </html>
   );
 }

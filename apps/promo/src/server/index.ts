@@ -9,6 +9,7 @@ import {
   designProjectOptions,
   stageOptions,
 } from "@/sections/quiz/constants";
+import PostHogClient from "@/posthog/client";
 
 type Store = Record<string, { title: string | React.ReactNode }>;
 
@@ -41,11 +42,9 @@ const getOptionLabel = (
 };
 
 export const submitForm = async (formData: FormData) => {
-  console.log(formData);
-
   const pii = {
-    name: formData.get("name"),
-    phone: formData.get("phone"),
+    name: formData.get("name") as string,
+    phone: formData.get("phone") as string,
   };
 
   const quizData: Record<string, string | string[]> = {};
@@ -76,7 +75,17 @@ export const submitForm = async (formData: FormData) => {
     quizData.timing = getOptionLabel(timingOptions, formData.get("timing"));
   }
 
-  console.log({ pii, quizData });
+  const ph = PostHogClient();
+  await ph.capture({
+    distinctId: pii.phone,
+    event: "form-submitted",
+    properties: {
+      ...pii,
+      ...quizData,
+    },
+  });
+  await ph.flush();
+  await ph.shutdown();
 
-  // return redirect("/thanks");
+  return redirect("/thanks");
 };
