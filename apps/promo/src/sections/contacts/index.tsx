@@ -20,7 +20,7 @@ const ListItem = ({
 
 export const ContactsSection = () => {
   return (
-    <Section className="bg-white" id="contacts">
+    <Section className="container bg-white" id="contacts">
       <div className="grid gap-8 lg:grid-cols-12">
         <div className="col-span-12 lg:col-span-5">
           <h3 className="mb-4 text-xl uppercase lg:mb-3">Контакты</h3>

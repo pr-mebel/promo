@@ -6,4 +6,12 @@
   :root {
     --radius: 0.5rem
   }
+
+  *:focus {
+    outline: none
+  }
+}
+
+html {
+  overscroll-behavior: unset;
 }

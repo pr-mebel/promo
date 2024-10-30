@@ -81,7 +81,7 @@ const Quiz = () => {
         <main className="relative col-span-12 xl:col-span-9">
           <Progress
             value={((step + 1) / 7) * 100}
-            className="hidden lg:block"
+            className="absolute hidden lg:block"
           />
           <Card className="h-full">
             <div className="relative flex h-full flex-col justify-end">
@@ -100,18 +100,27 @@ const Quiz = () => {
                     className="lg:hidden"
                   />
                 </div>
-                <div className="flex flex-grow justify-end gap-2">
-                  <Button type="button" className="w-full" onClick={handleBack}>
-                    Назад
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="accent"
-                    className="w-full"
-                    onClick={handleNext}
-                  >
-                    Далее <ArrowRight className="inline w-5" />
-                  </Button>
+                <div className="flex items-end justify-between">
+                  <p className="mb-1 hidden text-dark-700 lg:block">
+                    Вопрос {step + 1}/6
+                  </p>
+                  <div className="flex flex-grow justify-end gap-2">
+                    <Button
+                      type="button"
+                      className="w-full lg:w-auto"
+                      onClick={handleBack}
+                    >
+                      Назад
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="accent"
+                      className="w-full lg:w-auto"
+                      onClick={handleNext}
+                    >
+                      Далее <ArrowRight className="inline w-5" />
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -131,7 +140,7 @@ export const QuizSection = () => {
 
   return (
     <div className="w-full bg-dark-100">
-      <Section>
+      <Section className="container">
         <h2 className="text-3xl font-medium lg:text-4xl">
           Получите индивидуальное предложение по изготовлению корпусной мебели
           для вашего дома

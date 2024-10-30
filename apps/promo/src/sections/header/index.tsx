@@ -45,7 +45,7 @@ export const Header = () => {
 
   return (
     <>
-      <div className="h-16 lg:h-20" />
+      {/* <div className="h-16 lg:h-20" /> */}
       <header
         ref={ref}
         className="fixed top-0 z-50 h-16 w-full bg-white text-dark-900 transition-all duration-200 lg:h-20 lg:py-4"

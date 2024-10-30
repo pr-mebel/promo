@@ -5,7 +5,7 @@ export const Section = ({
   className,
   ...rest
 }: React.ComponentProps<"section">) => (
-  <section className={cn("container pb-10 pt-20", className)} {...rest}>
+  <section className={cn("pb-10 pt-20", className)} {...rest}>
     {children}
   </section>
 );

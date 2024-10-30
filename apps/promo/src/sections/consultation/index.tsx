@@ -87,7 +87,7 @@ const List = ({ className }: React.ComponentProps<"ul">) => (
 
 export const Consultation = () => (
   <div className="w-full bg-dark-100">
-    <Section className="bg-dark-100">
+    <Section className="container bg-dark-100">
       <Subtitle className="md:hidden" />
       <Title className="md:hidden" />
       {/* mobile */}

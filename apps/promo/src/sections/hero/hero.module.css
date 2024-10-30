@@ -1,0 +1,5 @@
+@media not all and (min-width: 1024px) {
+  .gradient {
+    background: linear-gradient(180deg, rgba(33, 33, 33, 0) 9.75%, rgba(33, 33, 33, 0.350923) 21.89%, rgba(33, 33, 33, 0.389668) 30.84%, rgba(33, 33, 33, 0.921361) 50.17%, #212121 60.78%, #212121 75.17%);
+  }
+}
