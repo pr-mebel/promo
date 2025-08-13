@@ -1,13 +1,17 @@
 "use client";
 
-import { steps } from "./constants";
 import { Section } from "@/components/section";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { QuizStep } from "./step";
+import { Step1 } from "./steps/step-1";
+import { Step2 } from "./steps/step-2";
+import { Step3 } from "./steps/step-3";
+import { Step4 } from "./steps/step-4";
+import { Step5 } from "./steps/step-5";
+import { Step6 } from "./steps/step-6";
 import { DesignerMessage } from "./designer-message";
-import { FinalStep } from "./final-step";
+import { FinalStep } from "./steps/final-step";
 import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/card";
 import { submitForm } from "@/server";
@@ -45,6 +49,15 @@ export const WhiteCard = ({
   </div>
 );
 
+const stepComponents = [
+  <Step1 key="step-1" />,
+  <Step2 key="step-2" />,
+  <Step3 key="step-3" />,
+  <Step4 key="step-4" />,
+  <Step5 key="step-5" />,
+  <Step6 key="step-6" />,
+];
+
 const Quiz = () => {
   const [step, setStep] = useState(0);
   const [visited, setVisited] = useState<number[]>([]);
@@ -58,7 +71,7 @@ const Quiz = () => {
   };
 
   const handleNext = () => {
-    if (step === steps.length) {
+    if (step === stepComponents.length) {
       return;
     }
     setStep(step + 1);
@@ -85,9 +98,9 @@ const Quiz = () => {
           />
           <Card className="h-full">
             <div className="relative flex h-full flex-col justify-end">
-              {steps.map((stepData, i) => (
-                <StepContainer key={stepData.id} active={step === i}>
-                  <QuizStep {...stepData} />
+              {stepComponents.map((stepComponent, i) => (
+                <StepContainer key={`step-${i}`} active={step === i}>
+                  {stepComponent}
                 </StepContainer>
               ))}
               <div className="relative z-20 flex flex-col gap-5">

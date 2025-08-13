@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { PHProvider } from "@/posthog/provider";
 import Script from "next/script";
 import { YandexMetrika } from "@/scripts";
 
@@ -42,15 +41,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <PHProvider>
-        <body className={`${fonts.className} text-dark-900`}>{children}</body>
-        <Script
-          id="yandex-metrika"
-          dangerouslySetInnerHTML={{
-            __html: YandexMetrika,
-          }}
-        />
-      </PHProvider>
+      <body className={`${fonts.className} text-dark-900`}>{children}</body>
+      <Script
+        id="yandex-metrika"
+        dangerouslySetInnerHTML={{
+          __html: YandexMetrika,
+        }}
+      />
     </html>
   );
 }

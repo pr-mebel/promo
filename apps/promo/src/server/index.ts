@@ -9,7 +9,6 @@ import {
   designProjectOptions,
   stageOptions,
 } from "@/sections/quiz/constants";
-import PostHogClient from "@/posthog/client";
 import nodemailer from "nodemailer";
 import Mail from "nodemailer/lib/mailer";
 
@@ -116,29 +115,6 @@ const getEmailParams = (
   };
 };
 
-const log = async (
-  pii: { name: string; phone: string },
-  quizData: Record<string, string | string[]>,
-) => {
-  const ph = PostHogClient();
-
-  await ph.identify({
-    distinctId: pii.phone,
-    properties: {
-      ...pii,
-    },
-  });
-  await ph.capture({
-    distinctId: pii.phone,
-    event: "form-submitted",
-    properties: {
-      ...pii,
-      ...quizData,
-    },
-  });
-  await ph.shutdown();
-};
-
 export const submitForm = async (formData: FormData) => {
   const pii = {
     name: formData.get("name") as string,
@@ -159,13 +135,7 @@ export const submitForm = async (formData: FormData) => {
     },
   });
 
-  const emailPromise = sendEmail(
-    transporterMail,
-    getEmailParams(pii, quizData),
-  );
-  const logPromise = log(pii, quizData);
-
-  await Promise.all([emailPromise, logPromise]);
+  await sendEmail(transporterMail, getEmailParams(pii, quizData));
 
   return redirect("/thanks");
 };

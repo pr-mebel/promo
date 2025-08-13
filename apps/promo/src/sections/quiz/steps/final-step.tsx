@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { WhiteCard } from ".";
+import { WhiteCard } from "..";
 import { Input } from "@/components/ui/input";
+import { PhoneInput } from "@/components/phone-input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -8,7 +9,7 @@ export const FinalStep = ({
   className,
 }: React.ComponentProps<typeof WhiteCard>) => (
   <WhiteCard className={cn("flex flex-col bg-white lg:grid", className)}>
-    <aside className="relative col-span-12 aspect-[2/1] lg:col-span-5 lg:aspect-auto">
+    <aside className="relative col-span-12 aspect-[2/1] lg:col-span-6 lg:aspect-auto">
       <Image
         src="/quiz/style/modern.jpg"
         alt="img"
@@ -16,7 +17,7 @@ export const FinalStep = ({
         className="object-cover"
       />
     </aside>
-    <main className="col-span-12 px-6 pt-8 lg:col-span-7 lg:px-14 lg:pb-12 lg:pt-20">
+    <main className="col-span-12 px-6 pt-8 lg:col-span-6 lg:px-14 lg:pb-12 lg:pt-20">
       <div className="mb-6 flex space-x-2 lg:mb-10">
         <svg
           className="h-7 w-7 shrink-0 fill-accent"
@@ -43,13 +44,8 @@ export const FinalStep = ({
         корпусной мебели
       </p>
       <div className="space-y-3">
+        <PhoneInput name="phone" placeholder="+7 (___) ___-__-__" required />
         <Input name="name" type="name" placeholder="Ваше имя" required />
-        <Input
-          name="phone"
-          type="tel"
-          placeholder="Ваш номер телефона"
-          required
-        />
         <Button type="submit" variant="accent" className="w-full">
           Получить консультацию
         </Button>
