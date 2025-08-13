@@ -8,7 +8,7 @@ interface PhoneInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
-  ({ className, ...props }, ref) => {
+  ({ className, formAction: _, ...props }, ref) => {
     return (
       <InputMask mask="+7 (999) 999-99-99" maskChar="_" {...props}>
         {(inputProps: any) => (

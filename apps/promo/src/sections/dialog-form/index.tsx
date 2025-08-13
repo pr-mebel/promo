@@ -20,7 +20,12 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import Image from "next/image";
-import { Form } from "../form";
+import { submitForm } from "@/server";
+import Form from "next/form";
+import { Input } from "@/components/ui/input";
+import { PhoneInput } from "@/components/phone-input";
+import { Button } from "@/components/ui/button";
+import { useMetrika } from "@/hooks/use-metrika";
 
 type DialogFormProps = {
   children: React.ReactNode;
@@ -29,6 +34,7 @@ type DialogFormProps = {
 export function DialogForm({ children }: DialogFormProps) {
   const [open, setOpen] = React.useState(false);
   const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const m = useMetrika();
 
   if (isDesktop) {
     return (
@@ -52,7 +58,24 @@ export function DialogForm({ children }: DialogFormProps) {
                 мебель и&nbsp;ответим на&nbsp;все вопросы. Никакого спама
               </DialogDescription>
             </DialogHeader>
-            <Form />
+            <Form
+              className="space-y-3"
+              action={submitForm}
+              onSubmit={() => {
+                m.track("promo/modal-form/submit");
+              }}
+            >
+              <Input name="name" type="name" placeholder="Ваше имя" />
+              <PhoneInput
+                name="phone"
+                type="tel"
+                required
+                placeholder="Ваш номер телефона"
+              />
+              <Button type="submit" variant="accent" className="w-full">
+                Получить консультацию
+              </Button>
+            </Form>
           </div>
         </DialogContent>
       </Dialog>
@@ -69,7 +92,24 @@ export function DialogForm({ children }: DialogFormProps) {
             и&nbsp;ответим на&nbsp;все вопросы. Никакого спама
           </DrawerDescription>
         </DrawerHeader>
-        <Form className="px-4 pb-6" />
+        <Form
+          className="space-y-3 px-4 pb-6"
+          action={submitForm}
+          onSubmit={() => {
+            m.track("promo/modal-form/submit");
+          }}
+        >
+          <Input name="name" type="name" placeholder="Ваше имя" />
+          <PhoneInput
+            name="phone"
+            type="tel"
+            required
+            placeholder="Ваш номер телефона"
+          />
+          <Button type="submit" variant="accent" className="w-full">
+            Получить консультацию
+          </Button>
+        </Form>
       </DrawerContent>
     </Drawer>
   );

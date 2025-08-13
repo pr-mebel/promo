@@ -1,13 +1,14 @@
+"use client";
 import { Card } from "@/components/card";
 import { Section } from "@/components/section";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { Form } from "../form";
 import { submitForm } from "@/server";
 import { useMetrika } from "@/hooks/use-metrika";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { PhoneInput } from "@/components/phone-input";
+import Form from "next/form";
 
 const ListItem = (props: { children: React.ReactNode }) => (
   <li className="flex items-center gap-3">{props.children}</li>
@@ -112,7 +113,23 @@ export const Consultation = () => {
             На консультации Вы узнаете:
           </h4>
           <List />
-          <Form className="mt-6" />
+          <Form
+            className="mt-6 max-w-80 grid-cols-2 gap-2 space-y-3 md:grid"
+            action={submitForm}
+            onSubmit={() => {
+              m.track("promo/modal-form/submit");
+            }}
+          >
+            <Input name="name" type="name" placeholder="Ваше имя" />
+            <PhoneInput
+              name="phone"
+              required
+              placeholder="Ваш номер телефона"
+            />
+            <Button type="submit" variant="accent" className="w-full">
+              Получить консультацию
+            </Button>
+          </Form>
         </Card>
         {/* desktop */}
         <Card className="hidden w-full grid-cols-12 gap-10 md:grid">
@@ -123,7 +140,7 @@ export const Consultation = () => {
               На консультации Вы узнаете:
             </h4>
             <List />
-            <form
+            <Form
               className="mt-6 max-w-80 grid-cols-2 gap-2 space-y-3 md:grid"
               action={submitForm}
               onSubmit={() => {
@@ -139,7 +156,7 @@ export const Consultation = () => {
               <Button type="submit" variant="accent" className="w-full">
                 Получить консультацию
               </Button>
-            </form>
+            </Form>
           </div>
           <div className="relative col-span-5 h-full">
             <Image
