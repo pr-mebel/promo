@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { CircleCheck } from "@/icons";
 import Image from "next/image";
 import { useState } from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const styleOptions = {
   modern: {
@@ -57,8 +58,8 @@ export const Step2 = () => {
       <p className="mb-6 text-2xl lg:text-3xl">
         Какой стиль интерьера вам нравится больше всего?
       </p>
-      <div className="flex-grow">
-        <div className="flex flex-col justify-between">
+      <ScrollArea className="flex-grow">
+        <div className="flex flex-col justify-between pb-10">
           <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-x-4 lg:gap-y-5">
             {options.map((option) => (
               <label key={option} className="relative cursor-pointer">
@@ -78,7 +79,7 @@ export const Step2 = () => {
                 />
                 <div
                   className={cn(
-                    "relative mb-1 aspect-video h-[190px] w-full",
+                    "relative mb-1 aspect-square w-full md:aspect-video md:h-[190px]",
                     selected.includes(option) && "border border-accent",
                   )}
                 >
@@ -103,7 +104,7 @@ export const Step2 = () => {
             ))}
           </div>
         </div>
-      </div>
+      </ScrollArea>
     </div>
   );
 };

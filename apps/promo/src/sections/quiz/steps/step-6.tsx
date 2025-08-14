@@ -1,5 +1,6 @@
 "use client";
 
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
@@ -32,8 +33,8 @@ export const Step6 = () => {
       <p className="mb-6 text-2xl lg:text-3xl">
         Как скоро&nbsp;Вы хотели&nbsp;бы, чтобы ваш дом был обставлен мебелью?
       </p>
-      <div className="flex-grow">
-        <div className="grid grid-cols-12 gap-4">
+      <ScrollArea className="flex-grow">
+        <div className="grid grid-cols-12 gap-4 pb-10">
           <div className="col-span-12 space-y-4 lg:col-span-6">
             {options.map((option) => (
               <label
@@ -66,7 +67,7 @@ export const Step6 = () => {
             ))}
           </div>
         </div>
-      </div>
+      </ScrollArea>
     </div>
   );
 };

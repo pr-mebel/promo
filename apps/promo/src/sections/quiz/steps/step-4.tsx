@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import { Check2 } from "@/icons";
 import { useState } from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const materialsOptions = {
   ldsp: {
@@ -46,8 +47,8 @@ export const Step4 = () => {
       <p className="mb-6 text-2xl lg:text-3xl">
         Какие материалы в&nbsp;мебели для Вас предпочтительны?
       </p>
-      <div className="flex-grow">
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
+      <ScrollArea className="flex-grow">
+        <div className="grid grid-cols-2 gap-4 pb-10 lg:grid-cols-3">
           {options.map((option) => (
             <label
               key={option}
@@ -83,7 +84,7 @@ export const Step4 = () => {
             </label>
           ))}
         </div>
-      </div>
+      </ScrollArea>
     </div>
   );
 };

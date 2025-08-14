@@ -18,37 +18,6 @@ import { submitForm } from "@/server";
 import { useState } from "react";
 import { Goal, useMetrika } from "@/hooks/use-metrika";
 
-const StepContainer = ({
-  children,
-  active,
-}: {
-  children: React.ReactNode;
-  active: boolean;
-}) => (
-  <div
-    className={cn(
-      "absolute inset-0 h-full w-full",
-      active ? "z-10 opacity-100" : "opacity-0",
-    )}
-  >
-    {children}
-  </div>
-);
-
-export const WhiteCard = ({
-  children,
-  className,
-}: React.ComponentProps<"div">) => (
-  <div
-    className={cn(
-      "absolute inset-0 z-0 grid grid-cols-12 bg-white opacity-0",
-      className,
-    )}
-  >
-    {children}
-  </div>
-);
-
 const stepComponents = [
   <Step1 key="step-1" />,
   <Step2 key="step-2" />,
@@ -88,22 +57,32 @@ const Quiz = () => {
   return (
     <>
       <input type="hidden" name="isQuiz" value="true" />
-      <FinalStep className={cn(step === 6 && "z-10 opacity-100")} />
-      <WhiteCard className={cn(step !== 6 && "z-10 opacity-100")}>
-        <DesignerMessage className="hidden xl:block" />
-        <main className="relative col-span-12 xl:col-span-9">
-          <Progress
-            value={((step + 1) / 7) * 100}
-            className="absolute hidden lg:block"
-          />
-          <Card className="h-full">
-            <div className="relative flex h-full flex-col justify-end">
+      {step === 6 ? (
+        <FinalStep />
+      ) : (
+        <div className="grid h-full grid-cols-12 bg-white">
+          <DesignerMessage className="hidden xl:block" />
+          <main className="relative col-span-12 h-full xl:col-span-9">
+            <Progress
+              value={((step + 1) / 7) * 100}
+              className="absolute z-10 hidden lg:block"
+            />
+            <Card className="relative flex h-full flex-col gap-4 md:h-full lg:grid lg:grid-rows-[1fr_auto]">
               {stepComponents.map((stepComponent, i) => (
-                <StepContainer key={`step-${i}`} active={step === i}>
-                  {stepComponent}
-                </StepContainer>
+                <div
+                  key={`step-${i}`}
+                  className={cn(
+                    "relative hidden w-full flex-grow overflow-hidden",
+                    {
+                      block: step === i,
+                    },
+                  )}
+                >
+                  <div className="absolute inset-0">{stepComponent}</div>
+                  <div className="pointer-events-none absolute -bottom-4 left-0 right-0 h-12 bg-gradient-to-t from-white to-transparent"></div>
+                </div>
               ))}
-              <div className="relative z-20 flex flex-col gap-5">
+              <div className="flex flex-shrink-0 flex-col gap-5">
                 <div>
                   <p className="mb-1 text-dark-700 lg:hidden">
                     Вопрос {step + 1}/6
@@ -136,10 +115,10 @@ const Quiz = () => {
                   </div>
                 </div>
               </div>
-            </div>
-          </Card>
-        </main>
-      </WhiteCard>
+            </Card>
+          </main>
+        </div>
+      )}
     </>
   );
 };
@@ -153,12 +132,12 @@ export const QuizSection = () => {
 
   return (
     <div className="w-full bg-dark-100">
-      <Section className="container">
-        <h2 className="text-3xl font-medium lg:text-4xl">
+      <Section className="px-0 md:container">
+        <h2 className="px-4 text-3xl font-medium md:px-0 lg:text-4xl">
           Получите индивидуальное предложение по изготовлению корпусной мебели
           для вашего дома
         </h2>
-        <h3 className="mb-10 mt-2 text-xl text-dark-700 lg:text-2xl">
+        <h3 className="mb-10 mt-2 px-4 text-xl text-dark-700 md:px-0 lg:text-2xl">
           Ответьте на 6 вопросов и{" "}
           <span className="font-bold">рассчитайте стоимость изготовления</span>{" "}
           мебели
@@ -166,7 +145,7 @@ export const QuizSection = () => {
         <form
           action={submitForm}
           onSubmit={handleSubmit}
-          className="relative h-[700px] md:h-[1000px] lg:h-[700px]"
+          className="h-[calc(100vh-64px)] lg:h-[700px]"
         >
           <Quiz />
         </form>
