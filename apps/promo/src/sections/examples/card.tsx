@@ -13,7 +13,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { ArrowRight } from "../../icons";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Goal, useMetrika } from "@/hooks/use-metrika";
 import { useState, useRef } from "react";
@@ -21,8 +21,8 @@ import { useState, useRef } from "react";
 type CardProps = {
   goal: Goal;
   title: string;
-  main: string;
-  images: string[];
+  main: StaticImageData;
+  images: StaticImageData[];
 };
 
 export const Card = ({ images, main, title, goal }: CardProps) => {
@@ -53,7 +53,7 @@ export const Card = ({ images, main, title, goal }: CardProps) => {
       </AlertDialogHeader>
       <AlertDialogTrigger className="group md:relative md:col-span-4">
         <div className="flex cursor-pointer flex-col items-center">
-          <img
+          <Image
             src={main}
             alt={title}
             className="aspect-[398/360] w-full object-cover md:aspect-[3/2]"
@@ -89,8 +89,7 @@ export const Card = ({ images, main, title, goal }: CardProps) => {
           <div className="relative flex flex-col gap-4 pb-12 pt-4">
             {images.map((src, i) => (
               <div key={i} className="relative w-full">
-                <img
-                  key={src}
+                <Image
                   src={src}
                   alt={title}
                   // fill
@@ -160,7 +159,7 @@ export const Card = ({ images, main, title, goal }: CardProps) => {
           {/* Thumbnails slider at bottom */}
           <div className="bg-background p-4">
             <ScrollArea className="w-full">
-              <div className="flex gap-2 py-2">
+              <div className="flex gap-2 px-2 py-2">
                 {images.map((src, index) => (
                   <button
                     key={index}
